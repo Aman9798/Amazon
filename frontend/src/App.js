@@ -1,5 +1,5 @@
 import './App.css';
-import { BrowserRouter as Router , Route } from 'react-router-dom';
+import { BrowserRouter as Router , Route , Switch} from 'react-router-dom';
 import React , {useEffect,useState} from 'react';
 import WebFont from 'webfontloader';
 import Header from './component/layout/Header/Header.js';
@@ -88,8 +88,10 @@ function App() {
 
             <ProtectedRoute isAdmin={true} exact path="/admin/dashboard" component={DashBoard} />
             <ProtectedRoute isAdmin={true} exact path="/admin/products" component={ProductList} />
-            <ProtectedRoute isAdmin={true} exact path="/admin/product/create" component={CreateProduct} />
-            <ProtectedRoute isAdmin={true} exact path="/admin/product/:id" component={UpdateProduct} />
+            <Switch>
+                <ProtectedRoute isAdmin={true} exact path="/admin/product/create" component={CreateProduct} />
+                <ProtectedRoute isAdmin={true} exact path="/admin/product/:id" component={UpdateProduct} />
+            </Switch>
 
             <Footer />
         </Router>
